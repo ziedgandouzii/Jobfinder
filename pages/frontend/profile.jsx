@@ -1,4 +1,3 @@
-// pages/profile.js
 import NavBar from '@/components/NavBar';
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
@@ -16,22 +15,35 @@ const profile = () => {
 
     const handleEditClick = () => {
         setEditing(!isEditing);
-        setOldPassword(''); // Reset old password input when switching between view and edit mode
-        setNewPassword(''); // Reset new password input when switching between view and edit mode
+        setOldPassword('');
+        setNewPassword('');
     };
 
     const handleSaveClick = () => {
-        // Validate the old password before saving changes
-        if (oldPassword === profile.password) {
-            // Handle saving changes to the backend or perform any necessary actions
-            // For now, we're just toggling back to view mode
-            setEditing(false);
-            setOldPassword('');
-            setNewPassword('');
-        } else {
-            // Display an error message or take appropriate action
+        const isChangingPassword = newPassword !== '';
+
+        // Validate the old password if changing the password
+        if (isChangingPassword && oldPassword !== profile.password) {
             console.error('Old password is incorrect');
+            return;
         }
+
+        // Update the profile state
+        const updatedProfile = { ...profile, name: profile.name, email: profile.email };
+
+        if (isChangingPassword) {
+            updatedProfile.password = newPassword;
+        }
+
+        setProfile(updatedProfile);
+
+        // Update data in localStorage
+        localStorage.setItem('userProfile', JSON.stringify(updatedProfile));
+
+        // Toggle back to view mode and reset input fields
+        setEditing(false);
+        setOldPassword('');
+        setNewPassword('');
     };
 
     const handleInputChange = (e) => {

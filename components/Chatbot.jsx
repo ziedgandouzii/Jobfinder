@@ -44,7 +44,7 @@ export default function Chatbot() {
                             {
                                 id: 'email',
                                 message: 'Hi {previousValue}, Please write your Email',
-                                trigger: 'waiting 2',
+                                trigger: 'waiting2',
                             },
                             {
                                 id: 'waiting2',
@@ -54,7 +54,7 @@ export default function Chatbot() {
                             {
                                 id: 'issue',
                                 message: 'Thanks for Providing Your Email, Please write your issue',
-                                trigger: 'waiting 3',
+                                trigger: 'waiting3',
                             },
                             {
                                 id: 'waiting3',
