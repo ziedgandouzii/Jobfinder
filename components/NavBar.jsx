@@ -96,7 +96,7 @@ export default function NavBar() {
                     {user ? (
                         <>
                             <Link href={'/frontend/dashboard'} className="px-3 mx-4 text-base font-medium transition-all duration-700 hover:translate-y-2 uppercase" >Dashboard</Link>
-                            <Link href={'//frontend/profile'} className="px-3 mx-4 text-base font-medium transition-all duration-700 hover:translate-y-2 uppercase" >Profile</Link>
+                            <Link href={'/frontend/profile'} className="px-3 mx-4 text-base font-medium transition-all duration-700 hover:translate-y-2 uppercase" >Profile</Link>
                         </>
                     ) : null}
                 </div>

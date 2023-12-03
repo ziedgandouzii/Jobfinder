@@ -2,6 +2,7 @@ import NavBar from '@/components/NavBar';
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { update_profile } from '@/Services/auth';
+import { toast, ToastContainer } from 'react-toastify';
 
 const profile = () => {
     const activeUser = useSelector(state => state?.User?.userData);
@@ -20,7 +21,8 @@ const profile = () => {
         setNewPassword('');
     };
 
-    const handleSaveClick = () => {
+    const handleSaveClick = async (e) => {
+        e.preventDefault();
         const isChangingPassword = newPassword !== '';
 
         // Validate the old password if changing the password
@@ -35,11 +37,17 @@ const profile = () => {
         if (isChangingPassword) {
             updatedProfile.password = newPassword;
         }
+        const res = await update_profile(updatedProfile);
+        if (res.success) {
+            setProfile(updatedProfile);
+            localStorage.setItem('user', JSON.stringify(updatedProfile));
+            console.log('Updated profile');
+        }
+        else {
+            toast.error(res.message);
+        }
 
-        setProfile(updatedProfile);
-
-        // Update data in localStorage
-        localStorage.setItem('userProfile', JSON.stringify(updatedProfile));
+        
 
         // Toggle back to view mode and reset input fields
         setEditing(false);
@@ -54,7 +62,7 @@ const profile = () => {
 
     return (
         <>
-            <NavBar />
+            <NavBar/>
             <div className='w-full h-screen pt-20 flex items-center justify-start flex-col'>
                 {/* Profile Content */}
                 <div className='w-full h-full px-4 '>

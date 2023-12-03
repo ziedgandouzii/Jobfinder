@@ -49,19 +49,26 @@ export const forget_password = async (formData) => {
     }
 }
 
-export const update_profile = async (formData, token) => {
+export const update_profile = async (formData) => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/updateProfile`, {
-            method: 'PUT',
+            method: 'PUT',  // Assuming your API endpoint uses the PUT method for updating profiles
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`,
+                // Include any additional headers if needed (e.g., authorization token)
             },
             body: JSON.stringify(formData),
         });
+
+        if (!res.ok) {
+            // Handle non-successful response (e.g., status code other than 2xx)
+            throw new Error(`Failed to update profile: ${res.statusText}`);
+        }
+
         const data = await res.json();
         return data;
     } catch (error) {
-        console.log('error in update profile (service) => ', error);
+        console.error('Error in update_profile (service) => ', error);
+        throw new Error('Failed to update profile');
     }
 };
