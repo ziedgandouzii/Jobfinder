@@ -1,6 +1,7 @@
 import NavBar from '@/components/NavBar';
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { update_profile } from '@/Services/auth';
 
 const profile = () => {
     const activeUser = useSelector(state => state?.User?.userData);
