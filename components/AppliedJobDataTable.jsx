@@ -39,7 +39,7 @@ export default function AppliedJobDataTable() {
         },
         {
             name: 'Job Salary ',
-            selector: row => '$' + row?.job?.salary,
+            selector: row => row?.job?.salary + " TND",
         },
         {
             name: 'Status',
