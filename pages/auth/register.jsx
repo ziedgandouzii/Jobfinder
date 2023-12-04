@@ -16,7 +16,7 @@ export default function  Register (){
       router.push('/');
     }
   },[router])  
-const [formData, setFormData] = useState({ email: "", password: "", name: "", role: "candidate" });
+const [formData, setFormData] = useState({ email: "", password: "", name: "", role: "Candidate" });
 const [error, setError] = useState({ email: "", password: "", name: ''});
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -85,9 +85,9 @@ const [error, setError] = useState({ email: "", password: "", name: ''});
                     <label>
                       <input
                         type="radio"
-                        value="candidate"
-                        checked={formData.role === 'candidate'}
-                        onChange={() => setFormData({ ...formData, role: 'candidate' })}
+                        value="Candidate"
+                        checked={formData.role === 'Candidate'}
+                        onChange={() => setFormData({ ...formData, role: 'Candidate' })}
                         className="mr-2"
                       />
                       Candidate
@@ -95,9 +95,9 @@ const [error, setError] = useState({ email: "", password: "", name: ''});
                     <label>
                       <input
                         type="radio"
-                        value="employer"
-                        checked={formData.role === 'employer'}
-                        onChange={() => setFormData({ ...formData, role: 'employer' })}
+                        value="Employer"
+                        checked={formData.role === 'Employer'}
+                        onChange={() => setFormData({ ...formData, role: 'Employer' })}
                         className="mr-2"
                       />
                       Employer
