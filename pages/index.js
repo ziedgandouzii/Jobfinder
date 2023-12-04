@@ -35,7 +35,6 @@ export default function Home() {
       dispatch(setUserData(null))
     }
   }, [token, dispatch])
-
   return (
     <>
       <Head>
